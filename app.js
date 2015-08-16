@@ -9,6 +9,11 @@ var express = require('express'),
   http = require('http'),
   path = require('path');
 
+var logger = require('morgan');
+var methodOverride = require('method-override');
+var bodyParser = require('body-parser');
+var errorHandler = require('errorhandler');
+
 var app = module.exports = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
@@ -21,15 +26,14 @@ var io = require('socket.io').listen(server);
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(app.router);
 
 // development only
 if (app.get('env') === 'development') {
-  app.use(express.errorHandler());
+  app.use(errorHandler());
 }
 
 // production only
