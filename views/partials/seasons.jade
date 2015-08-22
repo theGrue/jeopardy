@@ -1,0 +1,12 @@
+.container
+  h1 All Seasons
+  table.table.table-striped.table-hover.table-bordered
+    tr
+      th Name
+      th Description
+      th Note
+    tr(ng-repeat='season in data')
+      td
+        a(ui-sref='season({ id: season.id })') {{ season.name }}
+      td {{season.description}}
+      td {{season.note}}

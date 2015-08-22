@@ -1,0 +1,12 @@
+.container
+  h1 Season {{id}}
+  table.table.table-striped.table-hover.table-bordered
+    tr
+      th Name
+      th Description
+      th Note
+    tr(ng-repeat='episode in data')
+      td
+        a(ui-sref='game({ id: episode.id })') {{ episode.name }}
+      td {{episode.description}}
+      td {{episode.note}}

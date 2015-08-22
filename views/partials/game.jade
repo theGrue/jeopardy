@@ -1,0 +1,44 @@
+nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      span.navbar-brand Jeopardy!
+    .collapse.navbar-collapse
+      each i in [1, 2, 3]
+        form.navbar-form.navbar-left
+          .form-group
+            .input-group
+              input.form-control(type='text', placeholder='Player #{i}', ng-model='game.player_#{i}.name')
+              .input-group-addon {{game.player_#{i}.score || 0 | currency:'$':0}}
+      ul.nav.navbar-nav.navbar-right
+        li
+          button.btn.btn-primary.navbar-btn(type='button', ng-click='startGame()', ng-show='!game.round') Start Game
+
+.container
+  br
+  br
+  br
+  div(ng-hide='game.round')
+    .alert.alert-warning(ng-hide='data.game_complete')
+      strong Warning!
+      |  This is an incomplete game. You can still play, but it won't be the full experience.
+    h1.text-center {{data.game_title}}
+    h4.text-center {{data.game_comments}}
+
+  div(ng-show='game.round == "J"')
+    h2 Jeopardy! Round
+    each i in [1, 2, 3, 4, 5, 6]
+      .panel.panel-primary
+        .panel-heading
+          strong {{data.category_J_#{i}.category_name}}
+          |  {{data.category_J_#{i}.category_comments}}
+        table.table
+          each j in [1, 2, 3, 4, 5]
+            tr(ng-show='data.clue_J_#{i}_#{j} && !game.clue_J_#{i}_#{j}')
+              th
+                span(ng-hide='data.clue_J_#{i}_#{j}.daily_double')= j * 200
+                .label.label-primary(ng-show='data.clue_J_#{i}_#{j}.daily_double') DD
+              td {{data.clue_J_#{i}_#{j}.clue_text}}
+              td
+                em {{data.clue_J_#{i}_#{j}.correct_response}}
+              td.text-right
+                button.btn.btn-primary(ng-click='startClue("clue_J_#{i}_#{j}")') Select

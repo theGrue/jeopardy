@@ -1,0 +1,9 @@
+.container-fluid.jeopardy-board
+  .row.board-row.category-row
+    each i in [1, 2, 3, 4, 5, 6]
+      .col-md-2.text-center.board-cell.category-cell {{data.category_J_#{i}.category_name}}
+  each j in [1, 2, 3, 4, 5]
+    .row.board-row
+      each i in [1, 2, 3, 4, 5, 6]
+        .col-md-2.text-center.board-cell.clue-cell
+          span(ng-show='data.clue_J_#{i}_#{j} && !game.clue_J_#{i}_#{j}') $#{j * 200}
