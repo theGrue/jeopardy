@@ -40,6 +40,11 @@ module.exports = function (io) {
       socket.broadcast.emit('clue:start', data);
     });
 
+    socket.on('clue:daily', function (data) {
+      console.log('clue:daily');
+      socket.broadcast.emit('clue:daily', data);
+    });
+
     socket.on('clue:end', function (data) {
       console.log('clue:end');
       datas[id].game = data;
