@@ -1,8 +1,6 @@
 TODO:
 - Save game results
 - End game summary screen
-- Score display on board between rounds, before DDs and FJ
-- Board display tuneup
 - Media proxy
 - Redesign admin interface
 - Triple stumpers

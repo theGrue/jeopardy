@@ -42,6 +42,11 @@
   font-size: 600%;
 }
 
+.jeopardy-board .fj-cell .player-name,
+.jeopardy-board .fj-cell .player-score {
+  font-size: 66.67%;
+}
+
 .jeopardy-board .clue-cell {
   color: #efaa50;
   font-size: 600%;
@@ -67,6 +72,15 @@
   height: 100%;
   padding-left: 50px;
   padding-right: 50px;
+}
+
+.player-name {
+  font-family: 'Kadwa', serif;
+  text-transform: uppercase;
+}
+
+.player-score {
+  font-family: 'Fjalla One', sans-serif;
 }
 
 .video-wrapper {
