@@ -55,6 +55,9 @@ app.get('/api/seasons', api.seasons);
 app.get('/api/seasons/:id', api.season);
 app.get('/api/games/:id', api.game);
 
+// J-Archive proxy
+app.get('/media/*', require('./routes/proxy'));
+
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
 

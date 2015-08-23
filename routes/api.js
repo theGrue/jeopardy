@@ -43,7 +43,7 @@ function exportRound ($, context, r) {
       category_name: $('.category_name', data).text(),
       category_comments: $('.category_comments', data).text(),
       media: $('a', data).length ? $('a', data).map(function (i, element) {
-        return $(this).attr('href');
+        return $(this).attr('href').replace('http://www.j-archive.com/', 'http://localhost:3000/');
       }).toArray() : undefined
     };
   });
@@ -69,7 +69,7 @@ function exportRound ($, context, r) {
       clue_text: data.text(),
       correct_response: cheerio.load(answerHtml)('.correct_response').text(),
       media: $('a', data).length ? $('a', data).map(function (i, element) {
-        return $(this).attr('href');
+        return $(this).attr('href').replace('http://www.j-archive.com/', 'http://localhost:3000/');
       }).toArray() : undefined
     };
   });

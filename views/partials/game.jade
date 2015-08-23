@@ -62,7 +62,10 @@ nav.navbar.navbar-default.navbar-fixed-top
                 th
                   span(ng-hide='data.clue_#{k}_#{i}_#{j}.daily_double')= j * (k == 'J' ? 200 : 400)
                   .label.label-primary(ng-show='data.clue_#{k}_#{i}_#{j}.daily_double') DD
-                td {{data.clue_#{k}_#{i}_#{j}.clue_text}}
+                td
+                  span.pull-right(ng-show='data.clue_#{k}_#{i}_#{j}.media')
+                    img(ng-repeat='item in data.clue_#{k}_#{i}_#{j}.media', ng-src='{{item}}', height='64')
+                  | {{data.clue_#{k}_#{i}_#{j}.clue_text}}
                 td
                   em {{data.clue_#{k}_#{i}_#{j}.correct_response}}
                 td.text-right
