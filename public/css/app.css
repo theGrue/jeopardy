@@ -1,34 +1,5 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
-}
-
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-
 .jeopardy-board {
   position: absolute;
   width: 100%;
@@ -43,6 +14,10 @@
   height: 16.67%;
 }
 
+.jeopardy-board .fj-row {
+  height: 100%;
+}
+
 .jeopardy-board .category-row {
   border-bottom: 3px solid black;
 }
@@ -52,13 +27,29 @@
   border: 3px solid black;
 }
 
+.jeopardy-board .board-cell > div,
+.board-modal-open .modal-body > div {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .jeopardy-board .category-cell {
   font-size: 200%;
+}
+
+.jeopardy-board .fj-cell {
+  font-size: 600%;
 }
 
 .jeopardy-board .clue-cell {
   color: #efaa50;
   font-size: 600%;
+}
+
+.board-modal-open .modal-dialog {
+  width: 95%;
+  height: 90%;
 }
 
 .board-modal-open .modal-content {
@@ -69,6 +60,13 @@
   text-shadow: 4px 4px #000000;
   text-transform: uppercase;
   text-align: center;
+  height: 100%;
+}
+
+.board-modal-open .modal-body {
+  height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .video-wrapper {

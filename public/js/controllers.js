@@ -203,7 +203,7 @@ angular.module('myApp.controllers', []).
       }
 
       modalInstance = $modal.open({
-        template: '<div class="modal-body">' + message + '</div>',
+        template: '<div class="modal-body"><div>' + message + '</div></div>',
         scope: $scope,
         backdrop: 'static',
         keyboard: false,
@@ -216,14 +216,14 @@ angular.module('myApp.controllers', []).
       console.log('clue:start ' + data);
       if (!$scope.data[data].daily_double) {
         if (data === 'clue_FJ') {
-          openModal($scope.data[data].clue_html + '<iframe width="420" height="24" src="https://www.youtube.com/embed/1Obmnz_1hZk?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen></iframe>');
+          openModal($scope.data[data].clue_html + '<iframe width="420" height="0" src="https://www.youtube.com/embed/1Obmnz_1hZk?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen></iframe>');
         }
         else {
           openModal($scope.data[data].clue_html);
         }
       }
       else {
-        openModal('Daily<br />Double<br /><iframe width="420" height="24" src="https://www.youtube.com/embed/_HRJGNPg8MY?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen></iframe>');
+        openModal('Daily<br />Double<br /><iframe width="420" height="0" src="https://www.youtube.com/embed/_HRJGNPg8MY?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen></iframe>');
       }
     });
 

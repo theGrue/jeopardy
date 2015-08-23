@@ -5,12 +5,14 @@ each k in ['J', 'DJ']
   .container-fluid.jeopardy-board(ng-show='game.round == "#{k}"')
     .row.board-row.category-row
       each i in [1, 2, 3, 4, 5, 6]
-        .col-md-2.text-center.board-cell.category-cell {{data.category_#{k}_#{i}.category_name}}
+        .col-md-2.text-center.board-cell.category-cell
+          div {{data.category_#{k}_#{i}.category_name}}
     each j in [1, 2, 3, 4, 5]
       .row.board-row
         each i in [1, 2, 3, 4, 5, 6]
           .col-md-2.text-center.board-cell.clue-cell
-            span(ng-show='data.clue_#{k}_#{i}_#{j} && !game.clue_#{k}_#{i}_#{j}') $#{j * (k == 'J' ? 200 : 400)}
+            div(ng-show='data.clue_#{k}_#{i}_#{j} && !game.clue_#{k}_#{i}_#{j}') $#{j * (k == 'J' ? 200 : 400)}
 .container-fluid.jeopardy-board(ng-show='game.round == "FJ" || game.round == "end"')
-  .row.board-row
-    .col-md-12.text-center.board-cell.category-cell {{data.category_FJ_1.category_name}}
+  .row.fj-row
+    .col-md-12.text-center.board-cell.fj-cell
+      div {{data.category_FJ_1.category_name}}
