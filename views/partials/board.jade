@@ -1,3 +1,6 @@
+.video-wrapper(ng-if='!game.round')
+  iframe(width="560", height="315", src="https://www.youtube.com/embed/eNkvxqGmscY?autoplay=1&loop=1&playlist=eNkvxqGmscY", frameborder="0", allowfullscreen)
+
 each k in ['J', 'DJ']
   .container-fluid.jeopardy-board(ng-show='game.round == "#{k}"')
     .row.board-row.category-row
@@ -8,6 +11,6 @@ each k in ['J', 'DJ']
         each i in [1, 2, 3, 4, 5, 6]
           .col-md-2.text-center.board-cell.clue-cell
             span(ng-show='data.clue_#{k}_#{i}_#{j} && !game.clue_#{k}_#{i}_#{j}') $#{j * (k == 'J' ? 200 : 400)}
-.container-fluid.jeopardy-board(ng-show='game.round == "FJ"')
+.container-fluid.jeopardy-board(ng-show='game.round == "FJ" || game.round == "end"')
   .row.board-row
     .col-md-12.text-center.board-cell.category-cell {{data.category_FJ_1.category_name}}

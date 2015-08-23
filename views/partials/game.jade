@@ -22,12 +22,32 @@ nav.navbar.navbar-default.navbar-fixed-top
   br
   br
   br
+
   div(ng-hide='game.round')
     .alert.alert-warning(ng-hide='data.game_complete')
       strong Warning!
       |  This is an incomplete game. You can still play, but it won't be the full experience.
     h1.text-center {{data.game_title}}
     h4.text-center {{data.game_comments}}
+    br
+    each k in ['J', 'DJ']
+      table.table.table-striped
+        thead
+          tr
+            th #{k == 'DJ' ? 'Double' : ''} Jeopardy! Round
+            th # of Clues
+        tbody
+          each i in [1, 2, 3, 4, 5, 6]
+            tr
+              td {{data.category_#{k}_#{i}.category_name}}
+              td {{data.category_#{k}_#{i}.clue_count}} / 5
+    table.table.table-striped
+      thead
+        tr
+          th Final Jeopardy! Round
+      tbody
+        tr
+          td {{data.category_FJ_1.category_name}}
 
   each k in ['J', 'DJ']
     div(ng-show='game.round == "#{k}"')

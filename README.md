@@ -1,3 +1,13 @@
+TODO:
+- Save game results
+- End game summary screen
+- Score display on board between rounds, before DDs and FJ
+- Board display tuneup
+- Media proxy
+- Redesign admin interface
+- Triple stumpers
+- Random game
+
 # Angular Socket.io Seed
 
 Start an awesome app with AngularJS on the front, Socket.io + Express + Node on the back. This
@@ -51,7 +61,7 @@ and wrote a [blog post](http://briantford.com/blog/angular-socket-io.html) walki
 illustrate using the seed.
 
 ## Directory Layout
-    
+
     app.js                  --> app config
     bower.json              --> for bower
     package.json            --> for npm

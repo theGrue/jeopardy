@@ -215,10 +215,15 @@ angular.module('myApp.controllers', []).
     socket.on('clue:start', function (data) {
       console.log('clue:start ' + data);
       if (!$scope.data[data].daily_double) {
-        openModal($scope.data[data].clue_html);
+        if (data === 'clue_FJ') {
+          openModal($scope.data[data].clue_html + '<iframe width="420" height="24" src="https://www.youtube.com/embed/1Obmnz_1hZk?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen></iframe>');
+        }
+        else {
+          openModal($scope.data[data].clue_html);
+        }
       }
       else {
-        openModal('Daily<br />Double');
+        openModal('Daily<br />Double<br /><iframe width="420" height="24" src="https://www.youtube.com/embed/_HRJGNPg8MY?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen></iframe>');
       }
     });
 

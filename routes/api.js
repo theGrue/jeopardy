@@ -36,6 +36,7 @@ function exportRound ($, context, r) {
   var result = {};
   var round = $(r !== 'FJ' ? 'table.round' : 'table.final_round', context);
 
+  // Export categories
   $('tr', round).first().children().each(function (i, element) {
     var data = $(this);
     result[['category', r, i + 1].join('_')] = {
@@ -47,12 +48,14 @@ function exportRound ($, context, r) {
     };
   });
 
+  // Export clues
   $('.clue_text', round).each(function (i, element) {
     var data = $(this);
     var header = data.parent().prev();
     if (r === 'FJ') {
       header = data.parent().parent().parent().parent().prev();
     }
+    // TODO: Extra commas can screw this up, find a better way.
     var answerHtml = _.last(_.trimLeft(_.trimRight($('div', header).attr('onmouseover'), ')'), 'toggle(').split(', ').map(function (val) {
       return _.trim(_.trim(val), '\'').replace('\\"', '"').replace('\\"', '"');
     }));
@@ -102,6 +105,16 @@ exports.game = function (req, res, next) {
       result.game_complete = _.countBy(_.keys(result), function (n) {
         return n.split('_')[0];
       }).clue === (30 + 30 + 1);
+
+      var clueCounts = _.countBy(_.keys(result), function (n) {
+        return n.split('_').slice(0, 3).join('_');
+      });
+
+      _.forEach(result, function (n, key) {
+        if (_.startsWith(key, 'category')) {
+          n.clue_count = clueCounts[key.replace('category', 'clue')];
+        }
+      });
 
       res.json(result);
     }
