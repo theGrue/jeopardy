@@ -1,7 +1,5 @@
 TODO:
-- Save game results
 - End game summary screen
-- Media proxy
 - Redesign admin interface
 - Triple stumpers
 - Random game

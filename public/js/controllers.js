@@ -254,7 +254,7 @@ angular.module('myApp.controllers', []).
       console.log('clue:start ' + data);
       if (!$scope.data[data].daily_double) {
         if (data === 'clue_FJ') {
-          openModal($scope.data[data].clue_html + '<iframe width="420" height="0" src="https://www.youtube.com/embed/1Obmnz_1hZk?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen></iframe>');
+          openModal($scope.data[data].clue_html + '<iframe width="420" height="0" src="https://www.youtube.com/embed/1Obmnz_1hZk?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen style="display:none"></iframe>');
         }
         else {
           openModal($scope.data[data].clue_html);
@@ -263,7 +263,7 @@ angular.module('myApp.controllers', []).
       else {
         openModal('Daily<br />Double<br /><br />' +
           buildScores() +
-          '<iframe width="420" height="0" src="https://www.youtube.com/embed/_HRJGNPg8MY?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen></iframe>');
+          '<iframe width="420" height="0" src="https://www.youtube.com/embed/_HRJGNPg8MY?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen style="display:none"></iframe>');
       }
     });
 

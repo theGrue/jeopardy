@@ -3,6 +3,7 @@
  */
 
 var _ = require('lodash');
+var jsonfile = require('jsonfile');
 var id, datas = {};
 
 module.exports = function (io) {
@@ -25,6 +26,9 @@ module.exports = function (io) {
       }
       else if (data.round === 'FJ') {
         data.round = 'end';
+
+        var file = 'games/' + id + '-' + new Date().getTime() + '.json';
+        jsonfile.writeFileSync(file, data, { spaces: 2 });
       }
       datas[id].game = data;
       io.emit('round:start', datas[id]);
