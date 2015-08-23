@@ -5,6 +5,7 @@
   h1.text-center(ng-bind-html='clue.clue_html')
   h2.text-center
     em {{ clue.correct_response }}
+
   .row(ng-if='!clue.daily_double')
     each i in [1, 2, 3]
       .col-md-4.text-center
@@ -14,6 +15,7 @@
             span.glyphicon.glyphicon-remove
           button.btn.btn-lg(ng-click='setResult(#{i}, true)', ng-class="{'btn-default':!result.player_#{i}.right, 'btn-success':result.player_#{i}.right}")
             span.glyphicon.glyphicon-ok
+
   .row(ng-if='clue.daily_double')
     .col-md-4.text-right
       .btn-group
@@ -21,8 +23,8 @@
           label.btn.btn-primary(ng-model='result.dd_player', btn-radio="'player_#{i}'", ng-disabled='result.dd_confirm') {{ game.player_#{i}.name || 'Player #{i}' }}
     .col-md-4
       .input-group
-        span.input-group-addon Wager
-        input.form-control(type='text', ng-model='result.dd_value', ng-disabled='result.dd_confirm')
+        span.input-group-addon $
+        input.form-control(type='number', ng-model='result.dd_value', ng-disabled='result.dd_confirm')
     .col-md-4
       .button.btn.btn-primary(type='button', ng-click='setDDValue()', ng-hide='result.dd_confirm') Confirm
       .btn-group(ng-show='result.dd_confirm')
@@ -30,6 +32,7 @@
           span.glyphicon.glyphicon-remove
         button.btn(ng-click='setDDResult(true)', ng-class="{'btn-default':result.dd_result == undefined || result.dd_result == false, 'btn-success':result.dd_result == true}")
           span.glyphicon.glyphicon-ok
+
 .modal-footer
   button.btn.btn-lg.btn-warning(type="button", ng-click="cancel()") Cancel
   button.btn.btn-lg.btn-success(type="button", ng-click="ok()") Submit

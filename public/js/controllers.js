@@ -65,6 +65,11 @@ angular.module('myApp.controllers', []).
           response: function () {
             var split = id.split('_').slice(0, 3);
             split[0] = 'category';
+
+            if (split.length === 2) {
+              split.push(1);
+            }
+
             return {
               id: id,
               category: $scope.data[split.join('_')],
@@ -84,11 +89,14 @@ angular.module('myApp.controllers', []).
           var key = 'player_' + num
           $scope.game[key] = $scope.game[key] || {};
           $scope.game[key].score = $scope.game[key].score || 0;
+
+          var value = id === 'clue_FJ' ? parseInt($scope.game[key].fj_wager) : result.value;
+
           if (result[key] && result[key].right) {
-            $scope.game[key].score += result.value;
+            $scope.game[key].score += value;
           }
           else if (result[key] && result[key].wrong) {
-            $scope.game[key].score -= result.value;
+            $scope.game[key].score -= value;
           }
         });
 
@@ -96,6 +104,15 @@ angular.module('myApp.controllers', []).
         socket.emit('clue:end', $scope.game);
       });
     };
+
+    $scope.endRound = function () {
+      console.log('round:end emit');
+      socket.emit('round:end', $scope.game);
+    };
+
+    $scope.resetGame = function () {
+      $scope.game = {};
+    }
   }).
   controller('ClueCtrl', function ($scope, $modalInstance, response, socket) {
     $scope.category = response.category;
@@ -116,7 +133,7 @@ angular.module('myApp.controllers', []).
       $scope.result[key][correct ? 'right' : 'wrong'] = !$scope.result[key][correct ? 'right' : 'wrong'];
       $scope.result[key][correct ? 'wrong' : 'right'] = undefined;
 
-      if ($scope.result[key].right) {
+      if ($scope.result[key].right && response.id !== 'clue_FJ') {
         if (num === 1) {
           $scope.result.player_2.right = undefined;
           $scope.result.player_3.right = undefined;

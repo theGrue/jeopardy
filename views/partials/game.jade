@@ -1,7 +1,10 @@
 nav.navbar.navbar-default.navbar-fixed-top
   .container
     .navbar-header
-      span.navbar-brand Jeopardy!
+      span.navbar-brand
+        span(ng-show='game.round == "DJ"') Double
+        span(ng-show='game.round == "FJ"') Final
+        |  Jeopardy!
     .collapse.navbar-collapse
       each i in [1, 2, 3]
         form.navbar-form.navbar-left
@@ -12,6 +15,8 @@ nav.navbar.navbar-default.navbar-fixed-top
       ul.nav.navbar-nav.navbar-right
         li
           button.btn.btn-primary.navbar-btn(type='button', ng-click='startGame()', ng-show='!game.round') Start Game
+          button.btn.btn-primary.navbar-btn(type='button', ng-click='endRound()', ng-show='game.round == "J" || game.round == "DJ" || game.round == "FJ"') End Round
+          button.btn.btn-danger.navbar-btn(type='button', ng-click='resetGame()', ng-show='game.round == "end"') Reset Game
 
 .container
   br
@@ -24,21 +29,37 @@ nav.navbar.navbar-default.navbar-fixed-top
     h1.text-center {{data.game_title}}
     h4.text-center {{data.game_comments}}
 
-  div(ng-show='game.round == "J"')
-    h2 Jeopardy! Round
-    each i in [1, 2, 3, 4, 5, 6]
-      .panel.panel-primary
-        .panel-heading
-          strong {{data.category_J_#{i}.category_name}}
-          |  {{data.category_J_#{i}.category_comments}}
-        table.table
-          each j in [1, 2, 3, 4, 5]
-            tr(ng-show='data.clue_J_#{i}_#{j} && !game.clue_J_#{i}_#{j}')
-              th
-                span(ng-hide='data.clue_J_#{i}_#{j}.daily_double')= j * 200
-                .label.label-primary(ng-show='data.clue_J_#{i}_#{j}.daily_double') DD
-              td {{data.clue_J_#{i}_#{j}.clue_text}}
-              td
-                em {{data.clue_J_#{i}_#{j}.correct_response}}
-              td.text-right
-                button.btn.btn-primary(ng-click='startClue("clue_J_#{i}_#{j}")') Select
+  each k in ['J', 'DJ']
+    div(ng-show='game.round == "#{k}"')
+      each i in [1, 2, 3, 4, 5, 6]
+        .panel.panel-primary
+          .panel-heading
+            strong {{data.category_#{k}_#{i}.category_name}}
+            |  {{data.category_#{k}_#{i}.category_comments}}
+          table.table
+            each j in [1, 2, 3, 4, 5]
+              tr(ng-show='data.clue_#{k}_#{i}_#{j} && !game.clue_#{k}_#{i}_#{j}')
+                th
+                  span(ng-hide='data.clue_#{k}_#{i}_#{j}.daily_double')= j * (k == 'J' ? 200 : 400)
+                  .label.label-primary(ng-show='data.clue_#{k}_#{i}_#{j}.daily_double') DD
+                td {{data.clue_#{k}_#{i}_#{j}.clue_text}}
+                td
+                  em {{data.clue_#{k}_#{i}_#{j}.correct_response}}
+                td.text-right
+                  button.btn.btn-primary(ng-click='startClue("clue_#{k}_#{i}_#{j}")') Select
+
+  div(ng-show='game.round == "FJ"')
+    .panel.panel-primary
+      .panel-heading
+        strong {{data.category_FJ_1.category_name}}
+        |  {{data.category_FJ_1.category_comments}}
+      .panel-body(ng-show='!game.clue_FJ')
+        .row
+          each i in [1, 2, 3]
+            .col-md-4.text-center
+              h4 {{ game.player_#{i}.name || 'Player #{i}' }}
+              .input-group
+                .input-group-addon $
+                input.form-control(type='number', ng-model='game.player_#{i}.fj_wager')
+      .panel-footer.text-center(ng-show='!game.clue_FJ')
+        button.btn.btn-lg.btn-success(type="button", ng-click="startClue('clue_FJ')") Submit

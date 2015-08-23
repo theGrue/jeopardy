@@ -7,16 +7,6 @@ var id, datas = {};
 
 module.exports = function (io) {
   return function (socket) {
-    socket.emit('send:name', {
-      name: 'Bob'
-    });
-
-    // setInterval(function () {
-    //   socket.emit('send:time', {
-    //     time: (new Date()).toString()
-    //   });
-    // }, 1000);
-
     socket.on('game:start', function (data) {
       console.log('game:start ' + data.data.id);
       id = data.data.id;
@@ -24,6 +14,21 @@ module.exports = function (io) {
       data.game.round = 'J';
       io.emit('round:start', data);
     });
+
+    socket.on('round:end', function (data) {
+      console.log('round:end ' + data.round);
+      if (data.round === 'J') {
+        data.round = 'DJ';
+      }
+      else if (data.round === 'DJ') {
+        data.round = 'FJ';
+      }
+      else if (data.round === 'FJ') {
+        data.round = 'end';
+      }
+      datas[id].game = data;
+      io.emit('round:start', datas[id]);
+    })
 
     socket.on('board:init', function () {
       console.log('board:init');
