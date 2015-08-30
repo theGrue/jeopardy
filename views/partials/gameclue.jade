@@ -1,6 +1,8 @@
 .modal-header
   h3.modal-title {{ category.category_name }}
     span.pull-right {{ result.value | currency:'$':0 }}
+      .label.label-warning.pull-right(ng-show='clue.daily_double') DD
+      .label.label-danger.pull-right(ng-show='clue.triple_stumper') TS
 .modal-body
   h1.text-center(ng-bind-html='clue.clue_html')
   h2.text-center

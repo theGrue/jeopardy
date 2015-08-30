@@ -1,6 +1,5 @@
 TODO:
 - End game summary screen
-- Redesign admin interface
 - Random game
 - take a break
 - clue order
