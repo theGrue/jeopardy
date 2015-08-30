@@ -7,7 +7,12 @@
     br
     div(ng-bind-html='scoreHtml')
     iframe(width="420", height="0", src="https://www.youtube.com/embed/_HRJGNPg8MY?autoplay=1&autohide=0&rel=0", frameborder="0", allowfullscreen, style="display:none")
-  div(ng-bind-html='clue.clue_html', ng-if='show == "clue"')
+  div(ng-bind-html='clue.clue_html', ng-if='show == "clue" && !clue.media')
+  div(ng-if='show == "clue" && clue.media')
+    carousel(interval="'5000'")
+      slide(ng-repeat='slide in clue.media')
+        img(ng-src='{{slide}}')
+        .carousel-caption(ng-bind-html='clue.clue_text')
   div(ng-bind-html='scoreHtml', ng-if='show == "scores"')
   div(ng-if='id == "clue_FJ"')
     iframe(width="420", height="0", src="https://www.youtube.com/embed/1Obmnz_1hZk?autoplay=1&autohide=0&rel=0", frameborder="0", allowfullscreen, style="display:none")

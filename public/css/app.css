@@ -74,6 +74,22 @@
   padding-right: 50px;
 }
 
+.board-modal-open .carousel img {
+  min-height: 700px;
+  max-height: 700px;
+  margin: 0 auto;
+}
+
+.board-modal-open .carousel-caption {
+  left: 3%;
+  right: 3%;
+  font-size: 50%;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+}
+
 .player-name {
   font-family: 'Kadwa', serif;
   text-transform: uppercase;
