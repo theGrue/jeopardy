@@ -1,7 +1,6 @@
 TODO:
 - End game summary screen
 - Redesign admin interface
-- Triple stumpers
 - Random game
 - Whos in control
 - take a break

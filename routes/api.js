@@ -64,6 +64,7 @@ function exportRound ($, context, r) {
     result[data.attr('id')] = {
       id: link ? link.substring(link.indexOf('=') + 1, link.length) : undefined,
       daily_double: daily_double ? true : undefined,
+      triple_stumper: _.contains(answerHtml, 'Triple Stumper') || undefined,
       clue_html: data.html(),
       clue_text: data.text(),
       correct_response: cheerio.load(answerHtml)('.correct_response').text(),
