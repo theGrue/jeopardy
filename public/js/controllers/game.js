@@ -3,7 +3,9 @@
 angular.module('myApp.controllers').
   controller('GameCtrl', function ($scope, $modal, response, socket) {
     $scope.data = response.data;
-    $scope.game = {};
+    $scope.game = {
+      control_player: 'player_1'
+    };
 
     socket.emit('game:init', $scope.data.id);
 
@@ -72,6 +74,7 @@ angular.module('myApp.controllers').
 
           if (result[key] && result[key].right) {
             $scope.game[key].score += value;
+            $scope.game.control_player = key;
           }
           else if (result[key] && result[key].wrong) {
             $scope.game[key].score -= value;

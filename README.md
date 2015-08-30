@@ -2,7 +2,6 @@ TODO:
 - End game summary screen
 - Redesign admin interface
 - Random game
-- Whos in control
 - take a break
 - clue order
 

@@ -10,6 +10,8 @@ nav.navbar.navbar-default.navbar-fixed-top
         form.navbar-form.navbar-left
           .form-group
             .input-group
+              .input-group-addon(ng-show='game.control_player == "player_#{i}"')
+                span.glyphicon.glyphicon-map-marker
               input.form-control(type='text', placeholder='Player #{i}', ng-model='game.player_#{i}.name')
               .input-group-addon {{game.player_#{i}.score || 0 | currency:'$':0}}
       ul.nav.navbar-nav.navbar-right
@@ -31,14 +33,14 @@ nav.navbar.navbar-default.navbar-fixed-top
     h4.text-center {{data.game_comments}}
     br
     each k in ['J', 'DJ']
-      table.table.table-striped
+      table.table
         thead
           tr
             th #{k == 'DJ' ? 'Double' : ''} Jeopardy! Round
             th # of Clues
         tbody
           each i in [1, 2, 3, 4, 5, 6]
-            tr
+            tr(ng-class='{warning: data.category_#{k}_#{i}.clue_count == 4, danger: data.category_#{k}_#{i}.clue_count <= 3}')
               td {{data.category_#{k}_#{i}.category_name}}
               td {{data.category_#{k}_#{i}.clue_count}} / 5
     table.table.table-striped
