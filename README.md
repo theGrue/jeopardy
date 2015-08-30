@@ -3,6 +3,9 @@ TODO:
 - Redesign admin interface
 - Triple stumpers
 - Random game
+- Whos in control
+- take a break
+- clue order
 
 # Angular Socket.io Seed
 

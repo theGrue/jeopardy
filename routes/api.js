@@ -55,10 +55,9 @@ function exportRound ($, context, r) {
     if (r === 'FJ') {
       header = data.parent().parent().parent().parent().prev();
     }
-    // TODO: Extra commas can screw this up, find a better way.
-    var answerHtml = _.last(_.trimLeft(_.trimRight($('div', header).attr('onmouseover'), ')'), 'toggle(').split(', ').map(function (val) {
-      return _.trim(_.trim(val), '\'').replace('\\"', '"').replace('\\"', '"');
-    }));
+
+    var answerHtml = _.trimLeft(_.trimRight($('div', header).attr('onmouseover'), ')'), 'toggle(').split(', ').slice(2).join(', ');
+    answerHtml = _.trim(_.trim(answerHtml), '\'').replace('\\"', '"').replace('\\"', '"');
     var link = $('.clue_order_number a', header).attr('href');
     var daily_double = header.find('.clue_value_daily_double').length;
 
