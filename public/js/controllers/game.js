@@ -3,9 +3,6 @@
 angular.module('myApp.controllers').
   controller('GameCtrl', function ($scope, $modal, response, socket) {
     $scope.data = response.data;
-    $scope.game = {
-      control_player: 'player_1'
-    };
 
     socket.emit('game:init', $scope.data.id);
 
@@ -92,6 +89,9 @@ angular.module('myApp.controllers').
     };
 
     $scope.resetGame = function () {
-      $scope.game = {};
+      $scope.game = {
+        control_player: 'player_1'
+      };
     };
+    $scope.resetGame();
   });
