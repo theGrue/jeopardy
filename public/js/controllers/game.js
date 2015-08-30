@@ -35,8 +35,8 @@ angular.module('myApp.controllers').
       console.log('clue:start emit ' + id);
       socket.emit('clue:start', id);
       var modalInstance = $modal.open({
-        templateUrl: 'partials/clue',
-        controller: 'ClueCtrl',
+        templateUrl: 'partials/gameclue',
+        controller: 'GameClueCtrl',
         backdrop: 'static',
         keyboard: false,
         size: 'lg',

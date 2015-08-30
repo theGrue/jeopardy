@@ -49,53 +49,45 @@ angular.module('myApp.controllers').
       $scope.game = data.game;
 
       if (data.game.round === 'DJ') {
-        openModal(buildScores());
+        openModal();
         $timeout(modalInstance.close, 5000);
       }
       else if (data.game.round === 'FJ') {
         $scope.scoreHtml = buildScores();
       }
       else if (data.game.round === 'end') {
-        openModal(buildScores());
+        openModal();
       }
     });
 
     var modalInstance;
-    function openModal (message) {
+    function openModal (id) {
       if (modalInstance) {
         modalInstance.close();
       }
 
       modalInstance = $modal.open({
-        template: '<div class="modal-body"><div>' + message + '</div></div>',
-        scope: $scope,
+        templateUrl: 'partials/boardclue',
+        controller: 'BoardClueCtrl',
         backdrop: 'static',
-        keyboard: false,
         size: 'lg',
-        openedClass: 'board-modal-open'
+        openedClass: 'board-modal-open',
+        resolve: {
+          response: function () {
+            return {
+              id: id,
+              clue: $scope.data[id],
+              game: $scope.game,
+              scoreHtml: buildScores()
+            };
+          }
+        }
       });
     };
 
     socket.on('clue:start', function (data) {
       console.log('clue:start ' + data);
-      if (!$scope.data[data].daily_double) {
-        if (data === 'clue_FJ') {
-          openModal($scope.data[data].clue_html + '<iframe width="420" height="0" src="https://www.youtube.com/embed/1Obmnz_1hZk?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen style="display:none"></iframe>');
-        }
-        else {
-          openModal($scope.data[data].clue_html);
-        }
-      }
-      else {
-        openModal('Daily<br />Double<br /><br />' +
-          buildScores() +
-          '<iframe width="420" height="0" src="https://www.youtube.com/embed/_HRJGNPg8MY?autoplay=1&autohide=0&rel=0" frameborder="0" allowfullscreen style="display:none"></iframe>');
-      }
-    });
-
-    socket.on('clue:daily', function (data) {
-      console.log('clue:daily ' + data);
-      openModal($scope.data[data].clue_html);
+      openModal(data);
     });
 
     socket.on('clue:end', function (data) {

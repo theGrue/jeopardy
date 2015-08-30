@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.controllers').
-  controller('ClueCtrl', function ($scope, $modalInstance, response, socket) {
+  controller('GameClueCtrl', function ($scope, $modalInstance, response, socket) {
     $scope.category = response.category;
     $scope.clue = response.clue;
     $scope.game = response.game;
