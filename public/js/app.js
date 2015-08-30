@@ -16,19 +16,9 @@ angular.module('myApp', [
   'ui.router'
 ]).
 config(function ($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise("/view1");
+  $urlRouterProvider.otherwise("/seasons");
 
   $stateProvider.
-    state('view1', {
-      url: '/view1',
-      templateUrl: 'partials/partial1',
-      controller: 'MyCtrl1'
-    }).
-    state('view2', {
-      url: '/view2',
-      templateUrl: 'partials/partial2',
-      controller: 'MyCtrl2'
-    }).
     state('seasons', {
       url: '/seasons',
       templateUrl: 'partials/seasons',
