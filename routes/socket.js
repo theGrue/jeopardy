@@ -20,9 +20,19 @@ module.exports = function (io) {
       console.log('round:end ' + data.round);
       if (data.round === 'J') {
         data.round = 'DJ';
+        if (data.player_1.score < data.player_2.score && data.player_1.score < data.player_3.score) {
+          data.control_player = 'player_1';
+        }
+        else if (data.player_2.score < data.player_1.score && data.player_2.score < data.player_3.score) {
+          data.control_player = 'player_2';
+        }
+        else if (data.player_3.score < data.player_1.score && data.player_3.score < data.player_2.score) {
+          data.control_player = 'player_3';
+        }
       }
       else if (data.round === 'DJ') {
         data.round = 'FJ';
+        data.control_player = undefined;
       }
       else if (data.round === 'FJ') {
         data.round = 'end';

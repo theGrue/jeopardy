@@ -65,11 +65,10 @@ nav.navbar.navbar-default.navbar-fixed-top
           each i in [1, 2, 3, 4, 5, 6]
             .col-md-2
               .panel.panel-primary
-                .panel-heading.text-center
-                  strong {{ '#{j * (k == 'J' ? 200 : 400)}' | currency:'$':0 }}
-                  .label.label-warning.pull-right(ng-show='data.clue_#{k}_#{i}_#{j}.daily_double') DD
-                  .label.label-danger.pull-right(ng-show='data.clue_#{k}_#{i}_#{j}.triple_stumper') TS
-                .panel-body.text-center(ng-click='startClue("clue_#{k}_#{i}_#{j}")', ng-show='data.clue_#{k}_#{i}_#{j} && !game.clue_#{k}_#{i}_#{j}', style='cursor:pointer;padding:5px;') {{data.clue_#{k}_#{i}_#{j}.clue_text}}
+                .panel-body.text-center(ng-click='startClue("clue_#{k}_#{i}_#{j}")', ng-show='data.clue_#{k}_#{i}_#{j} && !game.clue_#{k}_#{i}_#{j}', style='cursor:pointer;padding:5px;')
+                  .label.label-primary.pull-left {{ '#{j * (k == 'J' ? 200 : 400)}' | currency:'$':0 }}
+                  .label.label-warning.pull-left(ng-show='data.clue_#{k}_#{i}_#{j}.daily_double') DD
+                  |  {{data.clue_#{k}_#{i}_#{j}.clue_text}}
 
   div(ng-show='game.round == "FJ"')
     .panel.panel-primary
