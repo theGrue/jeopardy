@@ -9,6 +9,22 @@ This app was hacked together over a couple of weekends to help practice for Jeop
 
 The objective was to run games as close to the real thing as possible, so other simulators out there that provided keyboard buzzing, typing in answers, or hiding the answer from the host were not suitable. Nor were apps that left out key features like Daily Doubles and Final Jeopardy.
 
+## Screenshots
+
+### Game Board
+
+![board1](/screens/board1.png?raw=true "Game Board")
+
+![board2](/screens/board2.png?raw=true "Game Board")
+
+### Host Interface
+
+![host1](/screens/host1.png?raw=true "Host Interface")
+
+![host2](/screens/host2.png?raw=true "Host Interface")
+
+![host3](/screens/host3.png?raw=true "Host Interface")
+
 ## Getting Started
 
 This app runs on [Node.js](https://nodejs.org/), make sure to install it before continuing. Also, if you don't have a buzzer, build one!
