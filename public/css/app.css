@@ -11,7 +11,7 @@
 }
 
 .jeopardy-board .board-row {
-  height: 16.67%;
+  height: 16%;
 }
 
 .jeopardy-board .fj-row {
@@ -20,6 +20,12 @@
 
 .jeopardy-board .category-row {
   border-bottom: 3px solid black;
+}
+
+.jeopardy-board .score-row {
+  height: 4%;
+  background: black;
+  font-size: 150%;
 }
 
 .jeopardy-board .board-cell {

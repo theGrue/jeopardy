@@ -9,7 +9,7 @@ angular.module('myApp.controllers').
       player_1: {},
       player_2: {},
       player_3: {},
-      dd_player: 'player_1'
+      dd_player: response.game.control_player
     };
 
     var value = response.id.split('_');

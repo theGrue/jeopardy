@@ -4,9 +4,13 @@
       .label.label-warning.pull-right(ng-show='clue.daily_double') DD
       .label.label-danger.pull-right(ng-show='clue.triple_stumper') TS
 .modal-body
-  h1.text-center(ng-bind-html='clue.clue_html')
-  h2.text-center
+  h1.text-center(ng-hide="clue.daily_double && !result.dd_confirm" ng-bind-html='clue.clue_html')
+  h2.text-center(ng-hide="clue.daily_double && !result.dd_confirm")
     em {{ clue.correct_response }}
+
+  h1.text-center(ng-show="clue.daily_double && !result.dd_confirm") Daily Double!
+  h2.text-center(ng-show="clue.daily_double && !result.dd_confirm") 
+    em Enter the player and wager below, then click Confirm.
 
   .row(ng-if='!clue.daily_double')
     each i in [1, 2, 3]

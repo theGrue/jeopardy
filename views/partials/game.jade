@@ -68,7 +68,11 @@ nav.navbar.navbar-default.navbar-fixed-top
                 .panel-body.text-center(style='padding:5px;')
                   .label.label-primary.pull-left {{ '#{j * (k == 'J' ? 200 : 400)}' | currency:'$':0 }}
                   .label.label-warning.pull-left(ng-show='data.clue_#{k}_#{i}_#{j}.daily_double') DD
-                  |  {{data.clue_#{k}_#{i}_#{j}.clue_text}}
+                  | {{data.clue_#{k}_#{i}_#{j}.clue_text}}
+              .panel.panel-default(ng-show='data.clue_#{k}_#{i}_#{j} && game.clue_#{k}_#{i}_#{j}')
+                .panel-body.text-center(style='padding:5px;')
+                  .label.label-default.pull-left {{ '#{j * (k == 'J' ? 200 : 400)}' | currency:'$':0 }}
+                  em.text-muted {{data.clue_#{k}_#{i}_#{j}.correct_response}}
 
   div(ng-show='game.round == "FJ"')
     .panel.panel-primary

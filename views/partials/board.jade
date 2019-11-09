@@ -1,8 +1,12 @@
 .video-wrapper(ng-if='!game.round')
-  iframe(width="560", height="315", src="https://www.youtube.com/embed/eNkvxqGmscY?autoplay=1&loop=1&playlist=eNkvxqGmscY", frameborder="0", allowfullscreen)
+  iframe(width="560", height="315", src="https://www.youtube.com/embed/53pg6AlOALs?autoplay=1&loop=1&playlist=53pg6AlOALs", frameborder="0", allowfullscreen)
 
 each k in ['J', 'DJ']
   .container-fluid.jeopardy-board(ng-show='game.round == "#{k}"')
+    .row.score-row
+      each i in [1, 2, 3]
+        .col-md-3 {{game.player_#{i}.name}}: {{game.player_#{i}.score || 0 | currency:'$':0}}
+      .col-md-3
     .row.board-row.category-row
       each i in [1, 2, 3, 4, 5, 6]
         .col-md-2.text-center.board-cell.category-cell
