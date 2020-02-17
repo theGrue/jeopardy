@@ -56,10 +56,11 @@ nav.navbar.navbar-default.navbar-fixed-top
       .row
         each i in [1, 2, 3, 4, 5, 6]
           .col-md-2
-            .panel.panel-primary
-              .panel-heading
-                strong {{data.category_#{k}_#{i}.category_name}}
-              .panel-body(ng-show='data.category_#{k}_#{i}.category_comments', style='padding:5px') {{data.category_#{k}_#{i}.category_comments}}
+            .panel.panel-primary.text-center(ng-click='toggleComments("category_#{k}_#{i}")')
+              .panel-heading(style="padding-top: 1px; padding-bottom: 1px;")
+                h4 {{data.category_#{k}_#{i}.category_name}}
+              .panel-body(ng-show='data.category_#{k}_#{i}.category_comments && !hideComments["category_#{k}_#{i}"]', style='padding:5px') {{data.category_#{k}_#{i}.category_comments}}
+              .panel-footer(ng-show='data.category_#{k}_#{i}.category_comments && !hideComments["category_#{k}_#{i}"]', style='padding:5px') Click to Hide
       each j in [1, 2, 3, 4, 5]
         .row
           each i in [1, 2, 3, 4, 5, 6]

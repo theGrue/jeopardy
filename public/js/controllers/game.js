@@ -3,6 +3,7 @@
 angular.module('myApp.controllers').
   controller('GameCtrl', function ($scope, $modal, response, socket) {
     $scope.data = response.data;
+    $scope.hideComments = {};
 
     socket.emit('game:init', $scope.data.id);
 
@@ -87,6 +88,10 @@ angular.module('myApp.controllers').
       console.log('round:end emit');
       socket.emit('round:end', $scope.game);
     };
+
+    $scope.toggleComments = function (category) {
+      $scope.hideComments[category] = !$scope.hideComments[category];
+    }
 
     $scope.resetGame = function () {
       $scope.game = {

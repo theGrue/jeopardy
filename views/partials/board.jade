@@ -4,9 +4,14 @@
 each k in ['J', 'DJ']
   .container-fluid.jeopardy-board(ng-show='game.round == "#{k}"')
     .row.score-row
-      each i in [1, 2, 3]
-        .col-md-3 {{game.player_#{i}.name}}: {{game.player_#{i}.score || 0 | currency:'$':0}}
+      each i in [3, 2, 1]
+        .col-md-3 
+          span.glyphicon.glyphicon-map-marker(ng-show='game.control_player == "player_#{i}"')
+          span {{game.player_#{i}.name}}: {{game.player_#{i}.score || 0 | currency:'$':0}}
       .col-md-3
+        span(ng-show='game.round == "DJ"') Double
+        span(ng-show='game.round == "FJ"') Final
+        |  Jeopardy!
     .row.board-row.category-row
       each i in [1, 2, 3, 4, 5, 6]
         .col-md-2.text-center.board-cell.category-cell
