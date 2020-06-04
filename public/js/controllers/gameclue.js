@@ -9,6 +9,9 @@ angular.module('myApp.controllers').
       player_1: {},
       player_2: {},
       player_3: {},
+      player_4: {},
+      player_5: {},
+      player_6: {},
       dd_player: response.game.control_player
     };
 
@@ -24,14 +27,44 @@ angular.module('myApp.controllers').
         if (num === 1) {
           $scope.result.player_2.right = undefined;
           $scope.result.player_3.right = undefined;
+          $scope.result.player_4.right = undefined;
+          $scope.result.player_5.right = undefined;
+          $scope.result.player_6.right = undefined;
         }
         else if (num === 2) {
           $scope.result.player_1.right = undefined;
           $scope.result.player_3.right = undefined;
+          $scope.result.player_4.right = undefined;
+          $scope.result.player_5.right = undefined;
+          $scope.result.player_6.right = undefined;
         }
         else if (num === 3) {
           $scope.result.player_1.right = undefined;
           $scope.result.player_2.right = undefined;
+          $scope.result.player_4.right = undefined;
+          $scope.result.player_5.right = undefined;
+          $scope.result.player_6.right = undefined;
+        }
+        else if (num === 4) {
+          $scope.result.player_1.right = undefined;
+          $scope.result.player_2.right = undefined;
+          $scope.result.player_3.right = undefined;
+          $scope.result.player_5.right = undefined;
+          $scope.result.player_6.right = undefined;
+        }
+        else if (num === 5) {
+          $scope.result.player_1.right = undefined;
+          $scope.result.player_2.right = undefined;
+          $scope.result.player_4.right = undefined;
+          $scope.result.player_3.right = undefined;
+          $scope.result.player_6.right = undefined;
+        }
+        else if (num === 6) {
+          $scope.result.player_1.right = undefined;
+          $scope.result.player_2.right = undefined;
+          $scope.result.player_4.right = undefined;
+          $scope.result.player_3.right = undefined;
+          $scope.result.player_5.right = undefined;
         }
       }
     };

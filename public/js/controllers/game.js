@@ -63,7 +63,7 @@ angular.module('myApp.controllers').
 
         // Keep score.
         result = result[id];
-        [1, 2, 3].forEach(function (num) {
+        [1, 2, 3, 4, 5, 6].forEach(function (num) {
           var key = 'player_' + num
           $scope.game[key] = $scope.game[key] || {};
           $scope.game[key].score = $scope.game[key].score || 0;

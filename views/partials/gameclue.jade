@@ -13,7 +13,7 @@
     em Enter the player and wager below, then click Confirm.
 
   .row(ng-if='!clue.daily_double')
-    each i in [1, 2, 3]
+    each i in [1, 2, 3, 4, 5, 6]
       .col-md-4.text-center
         h4 {{ game.player_#{i}.name || 'Player #{i}' }}
         .btn-group
@@ -25,7 +25,7 @@
   .row(ng-if='clue.daily_double')
     .col-md-4.text-right
       .btn-group
-        each i in [1, 2, 3]
+        each i in [1, 2, 3, 4, 5, 6]
           label.btn.btn-primary(ng-model='result.dd_player', btn-radio="'player_#{i}'", ng-disabled='result.dd_confirm') {{ game.player_#{i}.name || 'Player #{i}' }}
     .col-md-4
       .input-group

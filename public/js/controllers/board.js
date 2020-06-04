@@ -13,29 +13,50 @@ angular.module('myApp.controllers').
       }
     })
 
-    function buildScores () {
+    function buildScores() {
       return '<div class="row">' +
-          '<div class="col-md-4 text-center">' +
-            '<div class="player-name">' +
-              (($scope.game.player_1 && $scope.game.player_1.name) || 'Player 1') +
-            '</div><div class="player-score">' +
-              currencyFilter(($scope.game.player_1 && $scope.game.player_1.score) || 0, '$', 0) +
-            '</div>' +
-          '</div>' +
-          '<div class="col-md-4 text-center">' +
-            '<div class="player-name">' +
-              (($scope.game.player_2 && $scope.game.player_2.name) || 'Player 2') +
-            '</div><div class="player-score">' +
-              currencyFilter(($scope.game.player_2 && $scope.game.player_2.score) || 0, '$', 0) +
-            '</div>' +
-          '</div>' +
-          '<div class="col-md-4 text-center">' +
-            '<div class="player-name">' +
-              (($scope.game.player_3 && $scope.game.player_3.name) || 'Player 3') +
-            '</div><div class="player-score">' +
-              currencyFilter(($scope.game.player_3 && $scope.game.player_3.score) || 0, '$', 0) +
-            '</div>' +
-          '</div>' +
+        '<div class="col-md-4 text-center player-total">' +
+        '<div class="player-name">' +
+        (($scope.game.player_1 && $scope.game.player_1.name) || 'Player 1') +
+        '</div><div class="player-score">' +
+        currencyFilter(($scope.game.player_1 && $scope.game.player_1.score) || 0, '$', 0) +
+        '</div>' +
+        '</div>' +
+        '<div class="col-md-4 text-center player-total">' +
+        '<div class="player-name">' +
+        (($scope.game.player_2 && $scope.game.player_2.name) || 'Player 2') +
+        '</div><div class="player-score">' +
+        currencyFilter(($scope.game.player_2 && $scope.game.player_2.score) || 0, '$', 0) +
+        '</div>' +
+        '</div>' +
+        '<div class="col-md-4 text-center player-total">' +
+        '<div class="player-name">' +
+        (($scope.game.player_3 && $scope.game.player_3.name) || 'Player 3') +
+        '</div><div class="player-score">' +
+        currencyFilter(($scope.game.player_3 && $scope.game.player_3.score) || 0, '$', 0) +
+        '</div>' +
+        '</div>' +
+        '<div class="col-md-4 text-center player-total">' +
+        '<div class="player-name">' +
+        (($scope.game.player_4 && $scope.game.player_4.name) || 'Player 1') +
+        '</div><div class="player-score">' +
+        currencyFilter(($scope.game.player_4 && $scope.game.player_4.score) || 0, '$', 0) +
+        '</div>' +
+        '</div>' +
+        '<div class="col-md-4 text-center player-total">' +
+        '<div class="player-name">' +
+        (($scope.game.player_5 && $scope.game.player_5.name) || 'Player 1') +
+        '</div><div class="player-score">' +
+        currencyFilter(($scope.game.player_5 && $scope.game.player_5.score) || 0, '$', 0) +
+        '</div>' +
+        '</div>' +
+        '<div class="col-md-4 text-center player-total">' +
+        '<div class="player-name">' +
+        (($scope.game.player_6 && $scope.game.player_6.name) || 'Player 1') +
+        '</div><div class="player-score">' +
+        currencyFilter(($scope.game.player_6 && $scope.game.player_6.score) || 0, '$', 0) +
+        '</div>' +
+        '</div>' +
         '</div>';
     }
 
@@ -61,7 +82,7 @@ angular.module('myApp.controllers').
     });
 
     var modalInstance;
-    function openModal (id) {
+    function openModal(id) {
       if (modalInstance) {
         modalInstance.close();
       }

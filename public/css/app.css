@@ -11,7 +11,7 @@
 }
 
 .jeopardy-board .board-row {
-  height: 16%;
+  height: 15%;
 }
 
 .jeopardy-board .fj-row {
@@ -23,7 +23,7 @@
 }
 
 .jeopardy-board .score-row {
-  height: 4%;
+  height: 9%;
   background: black;
   font-size: 150%;
 }
@@ -50,7 +50,7 @@
 
 .jeopardy-board .fj-cell .player-name,
 .jeopardy-board .fj-cell .player-score {
-  font-size: 66.67%;
+  font-size: 33%;
 }
 
 .jeopardy-board .clue-cell {
@@ -123,4 +123,12 @@
 
 .panel {
   margin-bottom: 5px;
+}
+
+.navbar-form {
+  width: 200px;
+}
+
+.player-total {
+  padding: 20px;
 }
