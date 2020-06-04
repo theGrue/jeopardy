@@ -7,7 +7,7 @@ each k in ['J', 'DJ']
       each i in [1, 2, 3, 4, 5, 6]
         .col-md-3 
           span.glyphicon.glyphicon-map-marker(ng-show='game.control_player == "player_#{i}"')
-          span {{game.player_#{i}.name}}: {{game.player_#{i}.score || 0 | currency:'$':0}}
+          span {{game.player_#{i}.name}} {{game.player_#{i}.name && ":"}} {{game.player_#{i}.name && (game.player_#{i}.score || 0 | currency:'$':0)}}
       .col-md-3
         span(ng-show='game.round == "DJ"') Double
         span(ng-show='game.round == "FJ"') Final
