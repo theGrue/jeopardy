@@ -19,6 +19,7 @@
     "socket.io": "^2.3.0"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
