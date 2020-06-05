@@ -17,7 +17,7 @@
     "redis": "^3.0.2",
     "request": "^2.60.0",
     "socket.io": "^2.3.0",
-    "bower": "1.8.0"
+    "bower": "1.8.8"
   },
   "scripts": {
     "start": "node app.js",
