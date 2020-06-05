@@ -3,7 +3,7 @@
 // Declare app level module which depends on filters, and services
 
 angular.module('myApp', [
-  'ngSanitize',
+  //'ngSanitize',
 
   'myApp.controllers',
   'myApp.filters',
