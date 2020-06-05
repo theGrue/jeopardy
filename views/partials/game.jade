@@ -96,10 +96,31 @@ nav.navbar.navbar-default.navbar-fixed-top
             a(target='_blank', ng-href='http://www.j-archive.com/wageringcalculator.php?a={{game.player_1.score}}&b={{game.player_2.score}}&c={{game.player_3.score}}&player_a={{game.player_1.name}}&player_b={{game.player_2.name}}&player_c={{game.player_3.name}}') [wagering suggestions for these scores]
       .panel-footer.text-center(ng-show='!game.clue_FJ')
         button.btn.btn-lg.btn-success(type="button", ng-click="startClue('clue_FJ')") Submit
-
+  
+  div(ng-show='game.round == "FJ"')
+    div Wagers
+      div {{ game.final_wagers }}
+    div Answers
+      div {{ game.final_answers }}
+      ul#final_answers 
+      
   div(ng-show='game.round == "end"')
     h1.text-center Game over!
     p.text-center
       a(target='_blank', ng-href='http://www.j-archive.com/showgame.php?game_id={{data.id}}') Show game @ J! Archive
     p.text-center
       a(target='_blank', ng-href='http://www.j-archive.com/showgameresponses.php?game_id={{data.id}}') Show game responses @ J! Archive
+
+script.
+  console.log('script running');
+  $(document).ready(function() {
+    console.log('script running');
+    var socket = io.connect();
+    var answers = $('#answers');
+
+
+    socket.on('final:submit:done', function(data){
+      console.log('got a new answer');
+      answers.append(1);
+    }
+  });

@@ -13,10 +13,13 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
+var redis = require("redis");
+var redisClient = redis.createClient();
 
 var app = module.exports = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
+
 
 /**
  * Configuration

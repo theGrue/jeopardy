@@ -4,6 +4,8 @@ angular.module('myApp.controllers').
   controller('GameCtrl', function ($scope, $modal, response, socket) {
     $scope.data = response.data;
     $scope.hideComments = {};
+    $scope.final_answers = [];
+    $scope.final_wagers = [];
 
     socket.emit('game:init', $scope.data.id);
 
@@ -89,13 +91,19 @@ angular.module('myApp.controllers').
       socket.emit('round:end', $scope.game);
     };
 
+    $scope.submitFinal = function () {
+      console.log('submit final');
+    };
+
     $scope.toggleComments = function (category) {
       $scope.hideComments[category] = !$scope.hideComments[category];
     }
 
     $scope.resetGame = function () {
       $scope.game = {
-        control_player: 'player_1'
+        control_player: 'player_1',
+        final_wagers: [],
+        final_answers: []
       };
     };
     $scope.resetGame();

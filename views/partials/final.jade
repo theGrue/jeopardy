@@ -1,0 +1,17 @@
+div#final-wager
+  div.form-group
+    label(for='name') Name: 
+    input#name.form-control(type='text', placeholder='Your Name' ng-model='name')
+  div.form-group
+    label(for='name') Wager Amount:
+    input#wager.form-control(type='number', placeholder='$' ng-model='wager')
+  button.btn-lg.btn-primary#final_wager_btn(onClick="wager()" ng-click="submitWager(name,wager)") Submit Wager
+
+div#final-answer(hidden='true')
+  div.form-group
+    label(for='name') Answer: 
+    input#answer.form-control(type='text', placeholder='Your Answer' ng-model='answer')
+  button.btn-lg.btn-primary#final_answer_btn(onClick="answer()" ng-click="submitFinal(name,wager,answer)") Submit Answer
+
+div#final-thank-you(hidden='true')
+  h3 Thank You for Submitting Your Answer. Good Luck!
