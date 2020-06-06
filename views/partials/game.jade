@@ -4,7 +4,8 @@ nav.navbar.navbar-default.navbar-fixed-top
       span.navbar-brand
         span(ng-show='game.round == "DJ"') Double
         span(ng-show='game.round == "FJ"') Final
-        |  Jeopardy!
+        |  Jeopardy! 
+        a(target='_blank', ng-href='/#/buzzer/{{data.id}}') Buzzer
     .collapse.navbar-collapse
       each i in [1, 2, 3, 4, 5, 6]
         form.navbar-form.navbar-left

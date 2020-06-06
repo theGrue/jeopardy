@@ -1,0 +1,27 @@
+div.buzzer
+  div#buzzer-name(hidden="true") {{name}}
+    
+  span#buzzer-name-input
+    div.form-group
+      label Name:
+      input#name.form-control(type='text', placeholder='Your Name' ng-model='name')
+    button.btn-lg.btn-primary(ng-click="submitName()") Submit
+  
+  button#buzzer-button.btn-primary.btn-lg(hidden='true' ng-click="buzz(name)") Buzz
+
+  div.final-jeopardy(hidden="true")
+    div#final-wager
+      div.form-group
+        label(for='wager') Wager Amount:
+        input#wager.form-control(type='number', placeholder='$' ng-model='wager')
+      button.btn-lg.btn-primary#final_wager_btn(onClick="wager()" ng-click="submitWager(name,wager)") Submit Wager
+
+
+    div#final-answer(hidden='true')
+      div.form-group
+        label(for='answer') Answer: 
+        input#answer.form-control(type='text', placeholder='Your Answer' ng-model='answer')
+      button.btn-lg.btn-primary#final_answer_btn(onClick="answer()" ng-click="submitFinal(name,wager,answer)") Submit Answer
+
+  div#final-thank-you(hidden='true')
+    div Thank You for submitting your answer. Good luck!

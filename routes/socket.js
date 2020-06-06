@@ -13,6 +13,7 @@ module.exports = function (io) {
       id = data.data.id;
       datas[id] = data;
       data.game.round = 'J';
+      data.buzzed_player = 'temp';
       io.emit('round:start', data);
     });
 
@@ -26,6 +27,19 @@ module.exports = function (io) {
       console.log('final:submit ' + data.id + data.answer);
       datas[id].game.final_answers.push(data.answer);
       io.emit('final:submit:done', data.answer)
+    });
+
+    socket.on('buzz:attempt', function (data) {
+      id = data.id
+      if (datas[id].game.buzzed_player == null) {
+        datas[id].game.buzzed_player = data.name
+        io.emit('buzz:success', data.name);
+      }
+    });
+
+    socket.on('buzz:reset', function (parent_id) {
+      datas[id].game.buzzed_player = null
+      io.emit('buzz:reset:success')
     });
 
     socket.on('round:end', function (data) {
@@ -45,6 +59,7 @@ module.exports = function (io) {
       else if (data.round === 'DJ') {
         data.round = 'FJ';
         data.control_player = undefined;
+        io.emit('final:start');
       }
       else if (data.round === 'FJ') {
         data.round = 'end';

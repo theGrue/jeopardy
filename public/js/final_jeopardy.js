@@ -1,11 +1,11 @@
 var socket = io.connect();
 
 socket.on('final_wager:submit:done', function (data) {
-  $('#final-wagers').append(data.name + ": $" + data.wager_amount + "</br>")
+  $('#final-wagers').append(data.name + " $" + data.wager_amount + "</br>")
 });
 
 socket.on('final:submit:done', function (data) {
-  $('#final-answers').append(data.name + ": $" + data.wager + " " + data.answer + "</br>")
+  $('#final-answers').append(data.name + " $" + data.wager + " -  " + data.answer + "</br>")
 });
 
 function wager() {

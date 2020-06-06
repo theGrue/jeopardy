@@ -54,7 +54,8 @@ angular.module('myApp.controllers').
               id: id,
               category: $scope.data[split.join('_')],
               clue: $scope.data[id],
-              game: $scope.game
+              game: $scope.game,
+              parent_id: $scope.data.id
             };
           }
         }

@@ -5,6 +5,7 @@ angular.module('myApp.controllers').
     $scope.category = response.category;
     $scope.clue = response.clue;
     $scope.game = response.game;
+    $scope.parent_id = response.parent_id;
     $scope.result = {
       player_1: {},
       player_2: {},
@@ -80,6 +81,15 @@ angular.module('myApp.controllers').
       console.log('setDDResult ' + correct);
       $scope.result.dd_result = correct;
     };
+
+    $scope.resetBuzzer = function () {
+      socket.emit('buzz:reset', $scope.parent_id);
+      $('#buzzed-player').html('')
+    }
+
+    socket.on('buzz:success', function (name) {
+      $('#buzzed-player').html(name)
+    });
 
     $scope.ok = function () {
       var result = {};

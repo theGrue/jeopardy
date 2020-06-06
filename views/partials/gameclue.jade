@@ -40,7 +40,14 @@
           span.glyphicon.glyphicon-ok
   br
   br
+  div.buzz-info(ng-hide="game.round == 'FJ'")
+    button.btn-primary(ng-click="resetBuzzer()") Reset Buzzer
+    div
+      span Buzzed Player: 
+        span#buzzed-player
+  
 
+  h3(ng-show="game.round == 'FJ'") Answers
   ul#final-answers
   br
   div(ng-show="game.final_answers.length > 0") {{ game.final_answers }}
