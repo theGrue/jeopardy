@@ -38,6 +38,12 @@
           span.glyphicon.glyphicon-remove
         button.btn(ng-click='setDDResult(true)', ng-class="{'btn-default':result.dd_result == undefined || result.dd_result == false, 'btn-success':result.dd_result == true}")
           span.glyphicon.glyphicon-ok
+  br
+  br
+
+  ul#final-answers
+  br
+  div(ng-show="game.final_answers.length > 0") {{ game.final_answers }}
 
 .modal-footer
   button.btn.btn-lg.btn-warning(type="button", ng-click="cancel()") Cancel

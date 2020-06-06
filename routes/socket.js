@@ -19,13 +19,13 @@ module.exports = function (io) {
     socket.on('final_wager:submit', function (data) {
       console.log('final_wager:submit ' + data.id + data.wager.name, data.wager.wager_amount);
       datas[id].game.final_wagers.push(data.wager);
+      io.emit('final_wager:submit:done', data.wager)
     });
 
     socket.on('final:submit', function (data) {
       console.log('final:submit ' + data.id + data.answer);
       datas[id].game.final_answers.push(data.answer);
-      console.log(datas[id].game.final_answers);
-      io.emit('final:submit:done', datas[id].game.final_answers)
+      io.emit('final:submit:done', data.answer)
     });
 
     socket.on('round:end', function (data) {

@@ -98,11 +98,13 @@ nav.navbar.navbar-default.navbar-fixed-top
         button.btn.btn-lg.btn-success(type="button", ng-click="startClue('clue_FJ')") Submit
   
   div(ng-show='game.round == "FJ"')
-    div Wagers
-      div {{ game.final_wagers }}
-    div Answers
-      div {{ game.final_answers }}
-      ul#final_answers 
+    a(target='_blank', ng-href='/#/final/{{data.id}}') Final Submission Link
+    h2 Wagers
+    div 
+      ul#final-wagers
+      br
+      br
+      div(ng-show="game.final_wagers.length > 0") {{ game.final_answers }}
       
   div(ng-show='game.round == "end"')
     h1.text-center Game over!
@@ -110,17 +112,3 @@ nav.navbar.navbar-default.navbar-fixed-top
       a(target='_blank', ng-href='http://www.j-archive.com/showgame.php?game_id={{data.id}}') Show game @ J! Archive
     p.text-center
       a(target='_blank', ng-href='http://www.j-archive.com/showgameresponses.php?game_id={{data.id}}') Show game responses @ J! Archive
-
-script.
-  console.log('script running');
-  $(document).ready(function() {
-    console.log('script running');
-    var socket = io.connect();
-    var answers = $('#answers');
-
-
-    socket.on('final:submit:done', function(data){
-      console.log('got a new answer');
-      answers.append(1);
-    }
-  });
