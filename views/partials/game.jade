@@ -6,7 +6,7 @@ nav.navbar.navbar-default.navbar-fixed-top
         span(ng-show='game.round == "FJ"') Final
         |  Jeopardy!
     .collapse.navbar-collapse
-      each i in [1, 2, 3]
+      each i in [1, 2, 3, 4, 5, 6]
         form.navbar-form.navbar-left
           .form-group
             .input-group
@@ -24,7 +24,9 @@ nav.navbar.navbar-default.navbar-fixed-top
   br
   br
   br
-
+  br
+  br
+  br
   div(ng-hide='game.round')
     .alert.alert-warning(ng-hide='data.game_complete')
       strong Warning!
@@ -52,7 +54,7 @@ nav.navbar.navbar-default.navbar-fixed-top
           td {{data.category_FJ_1.category_name}}
 
   each k in ['J', 'DJ']
-    div(ng-show='game.round == "#{k}"')
+    div(class='admin-board' ng-show='game.round == "#{k}"')
       .row
         each i in [1, 2, 3, 4, 5, 6]
           .col-md-2
@@ -82,8 +84,8 @@ nav.navbar.navbar-default.navbar-fixed-top
         |  {{data.category_FJ_1.category_comments}}
       .panel-body(ng-show='!game.clue_FJ')
         .row
-          each i in [1, 2, 3]
-            .col-md-4.text-center
+          each i in [1, 2, 3, 4, 5, 6]
+            .col-md-4.text-center(ng-show="game.player_#{i}.name")
               h4 {{ game.player_#{i}.name || 'Player #{i}' }}
               .input-group
                 .input-group-addon $
@@ -94,7 +96,16 @@ nav.navbar.navbar-default.navbar-fixed-top
             a(target='_blank', ng-href='http://www.j-archive.com/wageringcalculator.php?a={{game.player_1.score}}&b={{game.player_2.score}}&c={{game.player_3.score}}&player_a={{game.player_1.name}}&player_b={{game.player_2.name}}&player_c={{game.player_3.name}}') [wagering suggestions for these scores]
       .panel-footer.text-center(ng-show='!game.clue_FJ')
         button.btn.btn-lg.btn-success(type="button", ng-click="startClue('clue_FJ')") Submit
-
+  
+  div(ng-show='game.round == "FJ"')
+    a(target='_blank', ng-href='/#/final/{{data.id}}') Final Submission Link
+    h2 Wagers
+    div 
+      ul#final-wagers
+      br
+      br
+      div(ng-show="game.final_wagers.length > 0") {{ game.final_answers }}
+      
   div(ng-show='game.round == "end"')
     h1.text-center Game over!
     p.text-center

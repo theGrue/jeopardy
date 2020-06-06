@@ -15,43 +15,54 @@ angular.module('myApp', [
   'ui.bootstrap',
   'ui.router'
 ]).
-config(function ($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise("/seasons");
+  config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/seasons");
 
-  $stateProvider.
-    state('seasons', {
-      url: '/seasons',
-      templateUrl: 'partials/seasons',
-      controller: 'SeasonsCtrl',
-      resolve: {
-        response: function ($http) {
-          return $http.get('/api/seasons');
+    $stateProvider.
+      state('seasons', {
+        url: '/seasons',
+        templateUrl: 'partials/seasons',
+        controller: 'SeasonsCtrl',
+        resolve: {
+          response: function ($http) {
+            return $http.get('/api/seasons');
+          }
         }
-      }
-    }).
-    state('season', {
-      url: '/seasons/:id',
-      templateUrl: 'partials/season',
-      controller: 'SeasonCtrl',
-      resolve: {
-        response: function ($http, $stateParams) {
-          return $http.get('/api/seasons/' + $stateParams.id);
+      }).
+      state('season', {
+        url: '/seasons/:id',
+        templateUrl: 'partials/season',
+        controller: 'SeasonCtrl',
+        resolve: {
+          response: function ($http, $stateParams) {
+            return $http.get('/api/seasons/' + $stateParams.id);
+          }
         }
-      }
-    }).
-    state('game', {
-      url: '/games/:id',
-      templateUrl: 'partials/game',
-      controller: 'GameCtrl',
-      resolve: {
-        response: function ($http, $stateParams) {
-          return $http.get('/api/games/' + $stateParams.id);
+      }).
+      state('game', {
+        url: '/games/:id',
+        templateUrl: 'partials/game',
+        controller: 'GameCtrl',
+        resolve: {
+          response: function ($http, $stateParams) {
+            return $http.get('/api/games/' + $stateParams.id);
+          }
         }
-      }
-    }).
-    state('board', {
-      url: '/board',
-      templateUrl: 'partials/board',
-      controller: 'BoardCtrl'
-    });
-});
+      }).
+      state('board', {
+        url: '/board',
+        templateUrl: 'partials/board',
+        controller: 'BoardCtrl'
+      }).
+      state('final', {
+        url: '/final/:id',
+        templateUrl: 'partials/final',
+        controller: 'FinalCtrl',
+        resolve: {
+          response: function ($http, $stateParams) {
+            return $http.get('/api/games/' + $stateParams.id);
+          }
+        }
+
+      });
+  });
