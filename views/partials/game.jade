@@ -85,7 +85,7 @@ nav.navbar.navbar-default.navbar-fixed-top
       .panel-body(ng-show='!game.clue_FJ')
         .row
           each i in [1, 2, 3, 4, 5, 6]
-            .col-md-4.text-center
+            .col-md-4.text-center(ng-show="game.player_#{i}.name")
               h4 {{ game.player_#{i}.name || 'Player #{i}' }}
               .input-group
                 .input-group-addon $
