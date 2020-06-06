@@ -36,50 +36,6 @@ angular.module('myApp.controllers').
       output = output.concat(buildPlayerScore($scope.game.player_6))
       output = output.concat('</div>')
       return output
-      return '<div class="row">' +
-        '<div class="col-md-4 text-center player-total" hidden="' + "true" + '">' +
-        '<div class="player-name">' +
-        (($scope.game.player_1 && $scope.game.player_1.name) || 'Player 1') +
-        '</div><div class="player-score">' +
-        currencyFilter(($scope.game.player_1 && $scope.game.player_1.score) || 0, '$', 0) +
-        '</div>' +
-        '</div>' +
-        '<div class="col-md-4 text-center player-total" hidden="' + ($scope.game.player_2.name == null) + '">' +
-        '<div class="player-name">' +
-        (($scope.game.player_2 && $scope.game.player_2.name) || 'Player 2') +
-        '</div><div class="player-score">' +
-        currencyFilter(($scope.game.player_2 && $scope.game.player_2.score) || 0, '$', 0) +
-        '</div>' +
-        '</div>' +
-        '<div class="col-md-4 text-center player-total" hidden="' + ($scope.game.player_3.name == null) + '">' +
-        '<div class="player-name">' +
-        (($scope.game.player_3 && $scope.game.player_3.name) || 'Player 3') +
-        '</div><div class="player-score">' +
-        currencyFilter(($scope.game.player_3 && $scope.game.player_3.score) || 0, '$', 0) +
-        '</div>' +
-        '</div>' +
-        '<div class="col-md-4 text-center player-total" hidden="' + ($scope.game.player_4.name == null) + '">' +
-        '<div class="player-name">' +
-        (($scope.game.player_4 && $scope.game.player_4.name) || 'Player 4') +
-        '</div><div class="player-score">' +
-        currencyFilter(($scope.game.player_4 && $scope.game.player_4.score) || 0, '$', 0) +
-        '</div>' +
-        '</div>' +
-        '<div class="col-md-4 text-center player-total" hidden="' + ($scope.game.player_5.name == null) + '">' +
-        '<div class="player-name">' +
-        (($scope.game.player_5 && $scope.game.player_5.name) || 'Player 5') +
-        '</div><div class="player-score">' +
-        currencyFilter(($scope.game.player_5 && $scope.game.player_5.score) || 0, '$', 0) +
-        '</div>' +
-        '</div>' +
-        '<div class="col-md-4 text-center player-total" hidden="' + ($scope.game.player_6.name == null) + '">' +
-        '<div class="player-name">' +
-        (($scope.game.player_6 && $scope.game.player_6.name) || 'Player 6') +
-        '</div><div class="player-score">' +
-        currencyFilter(($scope.game.player_6 && $scope.game.player_6.score) || 0, '$', 0) +
-        '</div>' +
-        '</div>' +
-        '</div>';
     }
 
     socket.on('round:start', function (data) {
