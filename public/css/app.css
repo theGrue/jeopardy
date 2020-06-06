@@ -11,7 +11,7 @@
 }
 
 .jeopardy-board .board-row {
-  height: 16%;
+  height: 15%;
 }
 
 .jeopardy-board .fj-row {
@@ -23,9 +23,9 @@
 }
 
 .jeopardy-board .score-row {
-  height: 4%;
+  height: 9%;
   background: black;
-  font-size: 150%;
+  font-size: 190%;
 }
 
 .jeopardy-board .board-cell {
@@ -50,7 +50,7 @@
 
 .jeopardy-board .fj-cell .player-name,
 .jeopardy-board .fj-cell .player-score {
-  font-size: 66.67%;
+  font-size: 33%;
 }
 
 .jeopardy-board .clue-cell {
@@ -61,6 +61,10 @@
 .board-modal-open .modal-dialog {
   width: 95%;
   height: 90%;
+}
+
+.modal-dialog {
+  margin-top: 100px;
 }
 
 .board-modal-open .modal-content {
@@ -123,4 +127,29 @@
 
 .panel {
   margin-bottom: 5px;
+}
+
+.navbar-form {
+  width: 200px;
+}
+
+.player-total {
+  padding: 20px;
+}
+
+.final-jeopardy {
+  padding: 10%;
+  font-size: 50px;
+}
+
+.final-jeopardy input { 
+  width: 100%; 
+  height: 200px;
+  line-height: 200px; font-size: 80px; 
+}
+  
+.final-jeopardy .btn-lg { 
+  height: 200px;
+  width: 500px;
+  font-size: 50px;
 }

@@ -6,7 +6,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var _ = require('lodash');
 
-function exportIndex (req, res, next) {
+function exportIndex(req, res, next) {
   return function (error, response, html) {
     if (!error) {
       var $ = cheerio.load(html), result = [];
@@ -19,7 +19,7 @@ function exportIndex (req, res, next) {
             row.push(link);
           }
           row.push($(element).text().trim());
-				});
+        });
 
         result.push(_.zipObject(['id', 'name', 'description', 'note'], row));
       });
@@ -32,7 +32,7 @@ function exportIndex (req, res, next) {
   };
 }
 
-function exportRound ($, context, r) {
+function exportRound($, context, r) {
   var result = {};
   var round = $(r !== 'FJ' ? 'table.round' : 'table.final_round', context);
 
@@ -56,7 +56,7 @@ function exportRound ($, context, r) {
       header = data.parent().parent().parent().parent().prev();
     }
 
-    var answerHtml = _.trimLeft(_.trimRight($('div', header).attr('onmouseover'), ')'), 'toggle(').split(', ').slice(2).join(', ');
+    var answerHtml = _.trimStart(_.trimEnd($('div', header).attr('onmouseover'), ')'), 'toggle(').split(', ').slice(2).join(', ');
     answerHtml = _.trim(_.trim(answerHtml), '\'').replace('\\"', '"').replace('\\"', '"');
     var link = $('.clue_order_number a', header).attr('href');
     var daily_double = header.find('.clue_value_daily_double').length;
@@ -64,7 +64,7 @@ function exportRound ($, context, r) {
     result[data.attr('id')] = {
       id: link ? link.substring(link.indexOf('=') + 1, link.length) : undefined,
       daily_double: daily_double ? true : undefined,
-      triple_stumper: _.contains(answerHtml, 'Triple Stumper') || undefined,
+      triple_stumper: _.includes(answerHtml, 'Triple Stumper') || undefined,
       clue_html: data.html(),
       clue_text: data.text(),
       correct_response: cheerio.load(answerHtml)('.correct_response').text(),

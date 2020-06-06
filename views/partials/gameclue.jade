@@ -13,8 +13,8 @@
     em Enter the player and wager below, then click Confirm.
 
   .row(ng-if='!clue.daily_double')
-    each i in [1, 2, 3]
-      .col-md-4.text-center
+    each i in [1, 2, 3, 4, 5, 6]
+      .col-md-4.text-center(ng-show="game.player_#{i}.name")
         h4 {{ game.player_#{i}.name || 'Player #{i}' }}
         .btn-group
           button.btn.btn-lg(ng-click='setResult(#{i}, false)', ng-class="{'btn-default':!result.player_#{i}.wrong, 'btn-danger':result.player_#{i}.wrong}")
@@ -25,8 +25,8 @@
   .row(ng-if='clue.daily_double')
     .col-md-4.text-right
       .btn-group
-        each i in [1, 2, 3]
-          label.btn.btn-primary(ng-model='result.dd_player', btn-radio="'player_#{i}'", ng-disabled='result.dd_confirm') {{ game.player_#{i}.name || 'Player #{i}' }}
+        each i in [1, 2, 3, 4, 5, 6]
+          label.btn.btn-primary(ng-model='result.dd_player', btn-radio="'player_#{i}'", ng-disabled='result.dd_confirm' ng-show="game.player_#{i}.name") {{ game.player_#{i}.name || 'Player #{i}' }}
     .col-md-4
       .input-group
         span.input-group-addon $
@@ -38,6 +38,12 @@
           span.glyphicon.glyphicon-remove
         button.btn(ng-click='setDDResult(true)', ng-class="{'btn-default':result.dd_result == undefined || result.dd_result == false, 'btn-success':result.dd_result == true}")
           span.glyphicon.glyphicon-ok
+  br
+  br
+
+  ul#final-answers
+  br
+  div(ng-show="game.final_answers.length > 0") {{ game.final_answers }}
 
 .modal-footer
   button.btn.btn-lg.btn-warning(type="button", ng-click="cancel()") Cancel
