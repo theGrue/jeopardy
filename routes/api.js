@@ -61,17 +61,28 @@ function exportRound ($, context, r) {
     var link = $('.clue_order_number a', header).attr('href');
     var daily_double = header.find('.clue_value_daily_double').length;
 
-    result[data.attr('id')] = {
-      id: link ? link.substring(link.indexOf('=') + 1, link.length) : undefined,
-      daily_double: daily_double ? true : undefined,
-      triple_stumper: _.contains(answerHtml, 'Triple Stumper') || undefined,
-      clue_html: data.html(),
-      clue_text: data.text(),
-      correct_response: cheerio.load(answerHtml)('.correct_response').text(),
-      media: $('a', data).length ? $('a', data).map(function (i, element) {
-        return $(this).attr('href').replace('http://www.j-archive.com/', 'http://localhost:3000/');
-      }).toArray() : undefined
-    };
+    let clueId = data.attr('id');
+    let indexOfUnderBarR = clueId.indexOf('_r');
+    let clueIdEndsWithR = clueId.length === indexOfUnderBarR+2;
+
+    if (clueIdEndsWithR) {
+      clueId = clueId.substring(0, indexOfUnderBarR);
+      if (result[clueId] !== null && result[clueId] !== undefined) {
+        result[clueId].correct_response = $('em', data).text();
+      }
+    } else {
+      result[clueId] = {
+        id: link ? link.substring(link.indexOf('=') + 1, link.length) : undefined,
+        daily_double: daily_double ? true : undefined,
+        triple_stumper: _.contains(answerHtml, 'Triple Stumper') || undefined,
+        clue_html: data.html(),
+        clue_text: data.text(),
+        correct_response: $('em', data).text(),
+        media: $('a', data).length ? $('a', data).map(function (i, element) {
+          return $(this).attr('href').replace('http://www.j-archive.com/', 'http://localhost:3000/');
+        }).toArray() : undefined
+      };
+    }
   });
 
   return result;
