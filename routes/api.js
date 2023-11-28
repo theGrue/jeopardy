@@ -49,25 +49,24 @@ function exportRound ($, context, r) {
   });
 
   // Export clues
-  $('.clue_text', round).each(function (i, element) {
+  $('.clue_text', round).not('[id$="_r"]').each(function (i, element) {
     var data = $(this);
     var header = data.parent().prev();
     if (r === 'FJ') {
       header = data.parent().parent().parent().parent().prev();
     }
 
-    var answerHtml = _.trimLeft(_.trimRight($('div', header).attr('onmouseover'), ')'), 'toggle(').split(', ').slice(2).join(', ');
-    answerHtml = _.trim(_.trim(answerHtml), '\'').replace('\\"', '"').replace('\\"', '"');
+    var answer = $('#' + data.attr('id') + '_r', data.parent());
     var link = $('.clue_order_number a', header).attr('href');
     var daily_double = header.find('.clue_value_daily_double').length;
 
     result[data.attr('id')] = {
       id: link ? link.substring(link.indexOf('=') + 1, link.length) : undefined,
       daily_double: daily_double ? true : undefined,
-      triple_stumper: _.contains(answerHtml, 'Triple Stumper') || undefined,
+      triple_stumper: _.contains(answer.html(), 'Triple Stumper') || undefined,
       clue_html: data.html(),
       clue_text: data.text(),
-      correct_response: cheerio.load(answerHtml)('.correct_response').text(),
+      correct_response: $('.correct_response', answer).text(),
       media: $('a', data).length ? $('a', data).map(function (i, element) {
         return $(this).attr('href').replace('http://www.j-archive.com/', 'http://localhost:3000/');
       }).toArray() : undefined
