@@ -30,6 +30,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bower_components', express.static(path.join(__dirname, 'node_modules')));
 
 // development only
 if (app.get('env') === 'development') {
