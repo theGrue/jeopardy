@@ -77,15 +77,30 @@ function exportRound ($, context, r) {
 }
 
 exports.seasons = function (req, res, next) {
-  request('http://www.j-archive.com/listseasons.php', exportIndex(req, res, next));
+  request({
+    url: 'http://www.j-archive.com/listseasons.php',
+    headers: {
+      'User-Agent': req.get('User-Agent')
+    }
+  }, exportIndex(req, res, next));
 };
 
 exports.season = function (req, res, next) {
-  request('http://www.j-archive.com/showseason.php?season=' + req.params.id, exportIndex(req, res, next));
+  request({
+    url: 'http://www.j-archive.com/showseason.php?season=' + req.params.id,
+    headers: {
+      'User-Agent': req.get('User-Agent')
+    }
+  }, exportIndex(req, res, next));
 }
 
 exports.game = function (req, res, next) {
-  request('http://www.j-archive.com/showgame.php?game_id=' + req.params.id, function (error, response, html) {
+  request({
+    url: 'http://www.j-archive.com/showgame.php?game_id=' + req.params.id,
+    headers: {
+      'User-Agent': req.get('User-Agent')
+    }
+  }, function (error, response, html) {
     if (!error) {
       var $ = cheerio.load(html);
 
