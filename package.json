@@ -2,6 +2,9 @@
   "name": "application-name",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": ">=8.0.0 <24.0.0"
+  },
   "dependencies": {
     "@uirouter/angularjs": "^0.2.18",
     "angular": "~1.4.4",
